@@ -1,0 +1,7 @@
+.env
+*.retry
+*tfvars
+*.DS_Store
+*.plan
+app/dist
+__pycache__
