@@ -12,9 +12,8 @@ class ProductFitViewSet(viewsets.ViewSet):
     def list(self, request, product_pk=None):
         try:
             product_fit = self.queryset.get(product=product_pk)
-            if product_fit:
-                serializer = ProductFitSerializer(object)
-                return Response(serializer.data)
+            serializer = ProductFitSerializer(product_fit)
+            return Response(serializer.data)
         except ProductFit.DoesNotExist:
             return Response(None, status=404)
 
