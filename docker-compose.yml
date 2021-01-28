@@ -44,13 +44,16 @@ services:
     ports:
       - "2181:2181"
   kafka:
-    build: .
+    image: wurstmeister/kafka
     ports:
       - "9092"
+    links:
+      - zookeeper
     environment:
-      KAFKA_CREATE_TOPICS: products
-      KAFKA_ADVERTISED_HOST_NAME: 172.20.0.200
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: "kafka"
+      KAFKA_CREATE_TOPICS: "products"
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_ADVERTISED_PORT: "9092"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 

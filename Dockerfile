@@ -57,10 +57,10 @@ EXPOSE 8000
 ENV DJANGO_SETTINGS_MODULE=app.settings
 
 # Call collectstatic (customize the following line with the minimal environment variables needed for manage.py to run):
-RUN DATABASE_URL='' python manage.py collectstatic --noinput
+RUN DJANGO_SECRET_KEY='X' python manage.py collectstatic --noinput
 
 # Tell uWSGI where to find your wsgi file (change this):
-ENV UWSGI_WSGI_FILE=app/wsgi.py
+ENV UWSGI_WSGI_FILE=/code/wsgi.py
 
 # Base uWSGI configuration (you shouldn't need to change these):
 ENV UWSGI_HTTP=:8000 UWSGI_MASTER=1 UWSGI_HTTP_AUTO_CHUNKED=1 UWSGI_HTTP_KEEPALIVE=1 UWSGI_LAZY_APPS=1 UWSGI_WSGI_ENV_BEHAVIOR=holy
